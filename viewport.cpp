@@ -15,7 +15,7 @@ Viewport::Viewport() :
   viewWidth(gdata.getXmlInt("view/width")), 
   viewHeight(gdata.getXmlInt("view/height")),
   objWidth(0), objHeight(0),
-  objectToTrack(NULL) 
+  objectToTrack(NULL)
 {}
 
 void Viewport::setObjectToTrack(const Drawable *obj) { 
@@ -26,7 +26,7 @@ void Viewport::setObjectToTrack(const Drawable *obj) {
 
 void Viewport::draw() const {
   IoMod::getInstance().
-    writeText("Tracking: "+objectToTrack->getName(), 30, 30);
+    writeText("Tracking: "+objectToTrack->getName(), 30, 30); 
 }
 
 void Viewport::update() {

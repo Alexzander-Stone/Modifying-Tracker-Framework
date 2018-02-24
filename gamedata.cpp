@@ -72,15 +72,6 @@ const string& Gamedata::getXmlStr(const string& tag) const {
 }
 
 void Gamedata::displayData() const {
-  /*
-  map<std::string, std::string>::const_iterator ptr =
-    gameData.begin();
-  while ( ptr != gameData.end() ) {
-    std::cout << ptr->first << ", " << ptr->second << std::endl;
-    ++ptr;
-  }
-  */
-
   // Ranged For loop
   for( const std::pair<string, string>& itr : gameData )
   {

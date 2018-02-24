@@ -40,6 +40,20 @@ void Engine::draw() const {
   spinningStar->draw();
 
   viewport.draw();
+  
+  // Screen height and width for drawing.
+  int height = Gamedata::getInstance().getXmlInt("view/height");
+  int width = Gamedata::getInstance().getXmlInt("view/width");
+  // Draw FPS.
+  std::stringstream fpsStream;
+  fpsStream << clock.getFps();
+  string fpsCounter = "FPS: " + fpsStream.str();
+  IoMod::getInstance().
+      writeText(fpsCounter, width - 100, 0);
+  // Draw name.
+  IoMod::getInstance().
+      writeText("Alexzander Stone", 0, height - Gamedata::getInstance().getXmlInt("font/size"));
+
   SDL_RenderPresent(renderer);
 
 }
@@ -102,7 +116,7 @@ void Engine::play() {
     ticks = clock.getElapsedTicks();
     if ( ticks > 0 ) {
       clock.incrFrame();
-      draw();
+      draw();      
       update(ticks);
       if ( makeVideo ) {
         frameGen.makeFrame();

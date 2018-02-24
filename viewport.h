@@ -27,7 +27,7 @@ private:
   int viewHeight;
   int objWidth;
   int objHeight;
-  
+
   const Drawable *objectToTrack;
 
   Viewport();
