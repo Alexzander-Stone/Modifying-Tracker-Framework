@@ -2,8 +2,10 @@
 #include "vector2f.h"
 #include "renderContext.h"
 
-ImageFactory* ImageFactory::getInstance() {
-  if ( !instance ) instance = new ImageFactory;
+ImageFactory& ImageFactory::getInstance() {
+  // Static moved to function. Since it's static, the existance won't be on the stack. 
+  // Instead it's on the global data segment, so it will live beyond the function. 
+  static ImageFactory instance;
   return instance;
 }
 

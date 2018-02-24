@@ -8,14 +8,15 @@
 class ImageFactory {
 public:
 
-  static ImageFactory* getInstance();
+  // Reference returned instead of pointer.
+  static ImageFactory& getInstance();
   ~ImageFactory();
 
   Image* getImage(const std::string&);
   std::vector<Image*> getImages(const std::string&);
 
 private:
-  static ImageFactory* instance;
+  // Static instance var no longer needed. Moved to function.  
   const Gamedata& gdata;
 
   std::map<std::string, SDL_Surface*> surfaces;

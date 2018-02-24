@@ -1,7 +1,7 @@
 // Brian Malloy        Data-Driven Object oriented Game Construction
 #include "engine.h"
 
-ImageFactory*  ImageFactory::instance = NULL;
+// Removed the reference to ImageFactory.
 RenderContext* RenderContext::instance = NULL;
 
 int main(int, char*[]) {
