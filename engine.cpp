@@ -21,7 +21,13 @@ Engine::Engine() :
   io( IoMod::getInstance() ),
   clock( Clock::getInstance() ),
   renderer( rc->getRenderer() ),
-  world("back", Gamedata::getInstance().getXmlInt("back/factor") ),
+  // Background image worlds.
+  frontTreeWorld("frontTree", Gamedata::getInstance().getXmlInt("frontTree/factor") ),
+  middleTreeWorld("middleTree", Gamedata::getInstance().getXmlInt("middleTree/factor") ),
+  backTreeWorld("backTree", Gamedata::getInstance().getXmlInt("backTree/factor") ),
+  mountainWorld("mountain", Gamedata::getInstance().getXmlInt("mountain/factor") ),
+  cloudWorld("cloud", Gamedata::getInstance().getXmlInt("cloud/factor") ),
+  mistWorld("mist", Gamedata::getInstance().getXmlInt("mist/factor") ),
   viewport( Viewport::getInstance() ),
   star(new Sprite("YellowStar")),
   spinningStar(new MultiSprite("SpinningStar")),
@@ -34,7 +40,13 @@ Engine::Engine() :
 }
 
 void Engine::draw() const {
-  world.draw();
+  // Background images.
+  mistWorld.draw();
+  cloudWorld.draw();
+  mountainWorld.draw();
+  backTreeWorld.draw();
+  middleTreeWorld.draw();
+  frontTreeWorld.draw();
 
   star->draw();
   spinningStar->draw();
@@ -64,7 +76,12 @@ void Engine::draw() const {
 void Engine::update(Uint32 ticks) {
   star->update(ticks);
   spinningStar->update(ticks);
-  world.update();
+  frontTreeWorld.update();
+  middleTreeWorld.update();
+  backTreeWorld.update();
+  mountainWorld.update();
+  cloudWorld.update();
+  mistWorld.update();
   viewport.update(); // always update viewport last
 }
 

@@ -4,15 +4,17 @@
 
 class World {
 public:
-  World(const std::string& name, int fact);
+  World(const std::string&, int fact);
   // ~World() { } // The image will be deleted by the FrameFactory
   void update();
   void draw() const;
 private:
-  Image* const image;
+  // Background image.
+  Image* const image; 
   int factor;
   unsigned worldWidth;
-  unsigned imageWidth;
+  // Background image widths.
+  unsigned backgroundWidth; 
   float viewX;
   float viewY;
   const Viewport & view;

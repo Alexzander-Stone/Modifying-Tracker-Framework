@@ -19,7 +19,14 @@ private:
   Clock& clock;
 
   SDL_Renderer * const renderer;
-  World world;
+  // Background images.
+  World frontTreeWorld;
+  World middleTreeWorld;
+  World backTreeWorld;
+  World mountainWorld;
+  World cloudWorld;
+  World mistWorld;
+  
   Viewport& viewport;
 
   Drawable* star;

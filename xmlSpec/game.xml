@@ -2,7 +2,7 @@
 <GameData>
 <!-- screenTitle is also used to identify you and your animation. 
      So make sure to include your name as part of the screenTitle -->
-<title>The Tracker Framework</title>
+<title>Alexzander Stone - Wooded Area</title>
 <maxStringSize>50</maxStringSize>
 
 <frameCapOn>true</frameCapOn>
@@ -21,11 +21,41 @@
   <height>800</height>
 </world>
 
-<back>
-  <file>assets/checkerboard.bmp</file>
+<frontTree>
+    <file>assets/trees1.png</file>
   <factor>1</factor>
   <transparency>false</transparency>
-</back>
+</frontTree>
+
+<middleTree>
+    <file>assets/trees2.png</file>
+  <factor>2</factor>
+  <transparency>false</transparency>
+</middleTree>
+
+<backTree>
+    <file>assets/trees3.png</file>
+  <factor>3</factor>
+  <transparency>false</transparency>
+</backTree>
+
+<mountain>
+    <file>assets/mountain.png</file>
+  <factor>4</factor>
+  <transparency>false</transparency>
+</mountain>
+
+<cloud>
+    <file>assets/cloud.png</file>
+  <factor>5</factor>
+  <transparency>false</transparency>
+</cloud>
+
+<mist>
+    <file>assets/mist.png</file>
+  <factor>6</factor>
+  <transparency>false</transparency>
+</mist>
 
 <font name="font">
   <file>fonts/arial.ttf</file>
