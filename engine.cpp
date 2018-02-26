@@ -44,15 +44,18 @@ void Engine::draw() const {
   // Screen height and width for drawing.
   int height = Gamedata::getInstance().getXmlInt("view/height");
   int width = Gamedata::getInstance().getXmlInt("view/width");
-  // Draw FPS.
+  // Draw FPS, use different color from overloaded writeText.
   std::stringstream fpsStream;
   fpsStream << clock.getFps();
   string fpsCounter = "FPS: " + fpsStream.str();
   IoMod::getInstance().
-      writeText(fpsCounter, width - 100, 0);
+      writeText(fpsCounter, width - 100, 0, SDL_Color{220, 60, 242, 255});
   // Draw name.
   IoMod::getInstance().
-      writeText("Alexzander Stone", 0, height - Gamedata::getInstance().getXmlInt("font/size"));
+      writeText("Alexzander Stone", 
+                0, 
+                height - Gamedata::getInstance().getXmlInt("font/size"), 
+                SDL_Color{220, 60, 242, 255});
 
   SDL_RenderPresent(renderer);
 
