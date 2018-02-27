@@ -6,6 +6,7 @@
 #include <iomanip>
 #include "sprite.h"
 #include "multisprite.h"
+#include "twoWaySprite.h"
 #include "gamedata.h"
 #include "engine.h"
 #include "frameGenerator.h"
@@ -37,10 +38,11 @@ Engine::Engine() :
   currentSprite(0),
   makeVideo( false )
 {
-  // New sprites.
+  // New sprites, single, multi, and twoFace.
   spriteContainer.reserve(
           Gamedata::getInstance().getXmlInt("SpinningStar/MaxSprites") + 
-          Gamedata::getInstance().getXmlInt("YellowStar/MaxSprites"));
+          Gamedata::getInstance().getXmlInt("YellowStar/MaxSprites") +
+          Gamedata::getInstance().getXmlInt("TwoWayStar/MaxSprites"));
   for(int i = 0; i < Gamedata::getInstance().getXmlInt("YellowStar/MaxSprites"); i++)
   {
     spriteContainer.emplace_back(new Sprite("YellowStar"));
@@ -49,7 +51,12 @@ Engine::Engine() :
   {
     spriteContainer.emplace_back(new MultiSprite("SpinningStar"));
   }
-  Viewport::getInstance().setObjectToTrack(spriteContainer[1]); 
+  for(int i = 0; i < Gamedata::getInstance().getXmlInt("TwoWayStar/MaxSprites"); i++)
+  {
+    spriteContainer.emplace_back(new TwoWaySprite("TwoWayStar"));
+  }
+  
+  Viewport::getInstance().setObjectToTrack(spriteContainer[0]); 
   std::cout << "Loading complete" << std::endl;
 }
 
