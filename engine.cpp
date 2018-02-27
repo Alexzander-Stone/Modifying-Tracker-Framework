@@ -11,8 +11,11 @@
 #include "frameGenerator.h"
 
 Engine::~Engine() { 
-  delete star;
-  delete spinningStar;
+  // Delete all sprites in container.
+  for(Drawable* spriteToDraw : spriteContainer)
+  {
+    delete spriteToDraw;
+  }
   std::cout << "Terminating program" << std::endl;
 }
 
@@ -28,14 +31,19 @@ Engine::Engine() :
   mountainWorld("mountain", Gamedata::getInstance().getXmlInt("mountain/factor") ),
   cloudWorld("cloud", Gamedata::getInstance().getXmlInt("cloud/factor") ),
   mistWorld("mist", Gamedata::getInstance().getXmlInt("mist/factor") ),
-  viewport( Viewport::getInstance() ),
-  star(new Sprite("YellowStar")),
-  spinningStar(new MultiSprite("SpinningStar")),
+  viewport( Viewport::getInstance() ), 
+  // Place max value in xml database.
   currentSprite(0),
   makeVideo( false )
 {
-  
-  Viewport::getInstance().setObjectToTrack(star);
+  // New sprites.
+  spriteContainer.reserve(Gamedata::getInstance().getXmlInt("Sprite/MaxSprites"));
+  for(int i = 0; i < Gamedata::getInstance().getXmlInt("Sprite/MaxSprites")-1; i++)
+  {
+    spriteContainer.emplace_back(new Sprite("YellowStar"));
+  }
+  spriteContainer.emplace_back(new MultiSprite("SpinningStar"));
+  Viewport::getInstance().setObjectToTrack(spriteContainer[1]); 
   std::cout << "Loading complete" << std::endl;
 }
 
@@ -48,11 +56,13 @@ void Engine::draw() const {
   middleTreeWorld.draw();
   frontTreeWorld.draw();
 
-  star->draw();
-  spinningStar->draw();
-
-  viewport.draw();
-  
+  // Draw sprite container. Ranged for loops will need the data type from
+  // within the container.
+  for(Drawable* spriteToDraw : spriteContainer)
+  {
+    spriteToDraw->draw();
+  }
+  viewport.draw();  
   // Screen height and width for drawing.
   int height = Gamedata::getInstance().getXmlInt("view/height");
   int width = Gamedata::getInstance().getXmlInt("view/width");
@@ -74,8 +84,10 @@ void Engine::draw() const {
 }
 
 void Engine::update(Uint32 ticks) {
-  star->update(ticks);
-  spinningStar->update(ticks);
+  for(Drawable* spriteToUpdate : spriteContainer)
+  {
+    spriteToUpdate->update(ticks);
+  }
   frontTreeWorld.update();
   middleTreeWorld.update();
   backTreeWorld.update();
@@ -87,13 +99,10 @@ void Engine::update(Uint32 ticks) {
 
 void Engine::switchSprite(){
   ++currentSprite;
-  currentSprite = currentSprite % 2;
-  if ( currentSprite ) {
-    Viewport::getInstance().setObjectToTrack(spinningStar);
-  }
-  else {
-    Viewport::getInstance().setObjectToTrack(star);
-  }
+  // Change to xml value
+  if(currentSprite >= Gamedata::getInstance().getXmlInt("Sprite/MaxSprites"))
+      currentSprite = 0;
+  Viewport::getInstance().setObjectToTrack(spriteContainer[currentSprite]);
 }
 
 void Engine::play() {

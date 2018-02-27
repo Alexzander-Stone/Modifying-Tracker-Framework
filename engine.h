@@ -10,6 +10,9 @@ class Engine {
 public:
   Engine ();
   ~Engine ();
+  // Disallow copy and assignment constructors explicitly.
+  Engine (const Engine&) = delete;
+  Engine& operator=(const Engine&) = delete;  
   void play();
   void switchSprite();
 
@@ -29,17 +32,15 @@ private:
   
   Viewport& viewport;
 
-  Drawable* star;
-  Drawable* spinningStar;
+  std::vector<Drawable*> spriteContainer;
   int currentSprite;
 
   bool makeVideo;
 
   void draw() const;
   void update(Uint32);
-
-  Engine(const Engine&);
-  Engine& operator=(const Engine&);
+  // Removed copy and assignment constructors to delete within the public
+  // section.
   void printScales() const;
   void checkForCollisions();
 };

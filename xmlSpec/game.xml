@@ -17,8 +17,8 @@
 </view>
 
 <world>
-  <width>2000</width>
-  <height>800</height>
+  <width>10000</width>
+  <height>1080</height>
 </world>
 
 <frontTree>
@@ -65,6 +65,9 @@
   <blue>0</blue>
   <alpha>0</alpha>
 </font>
+<Sprite>
+  <MaxSprites>15</MaxSprites>
+</Sprite>
 
 <SpinningStar>
   <file>assets/spinstar.png</file>
