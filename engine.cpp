@@ -33,16 +33,22 @@ Engine::Engine() :
   mistWorld("mist", Gamedata::getInstance().getXmlInt("mist/factor") ),
   viewport( Viewport::getInstance() ), 
   // Place max value in xml database.
+  spriteContainer(0),
   currentSprite(0),
   makeVideo( false )
 {
   // New sprites.
-  spriteContainer.reserve(Gamedata::getInstance().getXmlInt("Sprite/MaxSprites"));
-  for(int i = 0; i < Gamedata::getInstance().getXmlInt("Sprite/MaxSprites")-1; i++)
+  spriteContainer.reserve(
+          Gamedata::getInstance().getXmlInt("SpinningStar/MaxSprites") + 
+          Gamedata::getInstance().getXmlInt("YellowStar/MaxSprites"));
+  for(int i = 0; i < Gamedata::getInstance().getXmlInt("YellowStar/MaxSprites"); i++)
   {
     spriteContainer.emplace_back(new Sprite("YellowStar"));
   }
-  spriteContainer.emplace_back(new MultiSprite("SpinningStar"));
+  for(int i = 0; i < Gamedata::getInstance().getXmlInt("SpinningStar/MaxSprites"); i++)
+  {
+    spriteContainer.emplace_back(new MultiSprite("SpinningStar"));
+  }
   Viewport::getInstance().setObjectToTrack(spriteContainer[1]); 
   std::cout << "Loading complete" << std::endl;
 }
@@ -99,9 +105,11 @@ void Engine::update(Uint32 ticks) {
 
 void Engine::switchSprite(){
   ++currentSprite;
-  // Change to xml value
-  if(currentSprite >= Gamedata::getInstance().getXmlInt("Sprite/MaxSprites"))
+  if(currentSprite >= Gamedata::getInstance().getXmlInt("SpinningStar/MaxSprites") + 
+          Gamedata::getInstance().getXmlInt("YellowStar/MaxSprites"))
+  {
       currentSprite = 0;
+  }
   Viewport::getInstance().setObjectToTrack(spriteContainer[currentSprite]);
 }
 

@@ -65,9 +65,6 @@
   <blue>0</blue>
   <alpha>0</alpha>
 </font>
-<Sprite>
-  <MaxSprites>15</MaxSprites>
-</Sprite>
 
 <SpinningStar>
   <file>assets/spinstar.png</file>
@@ -79,6 +76,7 @@
   <speedX>200</speedX>
   <speedY>200</speedY>
   <transparency>false</transparency>
+  <MaxSprites>15</MaxSprites>
 </SpinningStar>
 
 <YellowStar>
@@ -87,6 +85,7 @@
   <speedX>300</speedX>
   <speedY>300</speedY>
   <transparency>false</transparency>
+  <MaxSprites>5</MaxSprites>
 </YellowStar>
 
 </GameData>

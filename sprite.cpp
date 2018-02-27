@@ -6,8 +6,8 @@
 #include "renderContext.h"
 
 Vector2f Sprite::makeVelocity(int vx, int vy) const {
-  float newvx = Gamedata::getInstance().getRandFloat(vx-50,vx+50);;
-  float newvy = Gamedata::getInstance().getRandFloat(vy-50,vy+50);;
+  float newvx = Gamedata::getInstance().getRandFloat(vx-50,vx+50);
+  float newvy = Gamedata::getInstance().getRandFloat(vy-50,vy+50);
   newvx *= [](){ if(rand()%2) return -1; else return 1; }();
   newvy *= [](){ if(rand()%2) return -1; else return 1; }();
 
@@ -26,7 +26,7 @@ Sprite::Sprite(const std::string& name) :
   Drawable(name,
            Vector2f(Gamedata::getInstance().getXmlInt(name+"/startLoc/x"), 
                     Gamedata::getInstance().getXmlInt(name+"/startLoc/y")), 
-           Vector2f(
+           makeVelocity(
                     Gamedata::getInstance().getXmlInt(name+"/speedX"), 
                     Gamedata::getInstance().getXmlInt(name+"/speedY")) 
            ),
