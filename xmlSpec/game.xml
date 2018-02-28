@@ -76,17 +76,19 @@
   <speedX>200</speedX>
   <speedY>200</speedY>
   <transparency>false</transparency>
-  <MaxSprites>10</MaxSprites>
+  <MaxSprites>2</MaxSprites>
 </SpinningStar>
 
 <TwoWayStar>
   <file>assets/twofacestar.png</file>
-  <backFile>assets/twofacestarBackwards.png</backFile>
   <startLoc x="50" y="140"/>
-  <speedX>100</speedX>
-  <speedY>100</speedY>
+  <frames>2</frames>
+  <imageWidth>32</imageWidth>
+  <imageHeight>32</imageHeight>
+  <speedX>1000</speedX>
+  <speedY>1000</speedY>
   <transparency>false</transparency>
-  <MaxSprites>5</MaxSprites>
+  <MaxSprites>2</MaxSprites>
 </TwoWayStar>
 
 <YellowStar>
@@ -95,7 +97,7 @@
   <speedX>300</speedX>
   <speedY>300</speedY>
   <transparency>false</transparency>
-  <MaxSprites>12</MaxSprites>
+  <MaxSprites>3</MaxSprites>
 </YellowStar>
 
 </GameData>

@@ -5,6 +5,10 @@
 #include "gamedata.h"
 #include "renderContext.h"
 
+void TwoWaySprite::advanceFrame() {
+    currentFrame = (currentFrame+1) % numberOfFrames;
+}
+
 Vector2f TwoWaySprite::makeVelocity(int vx, int vy) const {
   float newvx = Gamedata::getInstance().getRandFloat(vx-50,vx+50);
   float newvy = Gamedata::getInstance().getRandFloat(vy-50,vy+50);
@@ -14,14 +18,6 @@ Vector2f TwoWaySprite::makeVelocity(int vx, int vy) const {
   return Vector2f(newvx, newvy);
 }
 
-TwoWaySprite::TwoWaySprite(const string& n, const Vector2f& pos, const Vector2f& vel,
-               const Image* img):
-  Drawable(n, pos, vel), 
-  image( img ),
-  worldWidth(Gamedata::getInstance().getXmlInt("world/width")),
-  worldHeight(Gamedata::getInstance().getXmlInt("world/height"))
-{ }
-
 TwoWaySprite::TwoWaySprite(const std::string& name) :
   Drawable(name,
            Vector2f(Gamedata::getInstance().getXmlInt(name+"/startLoc/x"), 
@@ -30,21 +26,28 @@ TwoWaySprite::TwoWaySprite(const std::string& name) :
                     Gamedata::getInstance().getXmlInt(name+"/speedX"), 
                     Gamedata::getInstance().getXmlInt(name+"/speedY")) 
            ),
-  image( RenderContext::getInstance()->getImage(name) ),
+
+  images( RenderContext::getInstance()->getImages(name) ),
+  currentFrame(0),
+  numberOfFrames( Gamedata::getInstance().getXmlInt(name+"/frames") ),
   worldWidth(Gamedata::getInstance().getXmlInt("world/width")),
   worldHeight(Gamedata::getInstance().getXmlInt("world/height"))
 { }
 
 TwoWaySprite::TwoWaySprite(const TwoWaySprite& s) :
   Drawable(s), 
-  image(s.image),
-  worldWidth(Gamedata::getInstance().getXmlInt("world/width")),
-  worldHeight(Gamedata::getInstance().getXmlInt("world/height"))
+  images(s.images),
+  currentFrame(s.currentFrame),
+  numberOfFrames( s.numberOfFrames ),
+  worldWidth(s.worldWidth),
+  worldHeight(s.worldHeight)
 { }
 
 TwoWaySprite& TwoWaySprite::operator=(const TwoWaySprite& rhs) {
   Drawable::operator=( rhs );
-  image = rhs.image;
+  images = rhs.images;
+  currentFrame = (rhs.currentFrame);
+  numberOfFrames = (rhs.numberOfFrames);
   worldWidth = rhs.worldWidth;
   worldHeight = rhs.worldHeight;
   return *this;
@@ -55,8 +58,7 @@ inline namespace{
 }
 
 void TwoWaySprite::draw() const { 
-  if(getScale() < SCALE_EPSILON) return;
-  image->draw(getX(), getY(), getScale()); 
+  images[currentFrame]->draw(getX(), getY(), getScale()); 
 }
 
 void TwoWaySprite::update(Uint32 ticks) { 
@@ -69,6 +71,12 @@ void TwoWaySprite::update(Uint32 ticks) {
   if ( getY() > worldHeight-getScaledHeight()) {
     setVelocityY( -std::abs( getVelocityY() ) );
   }
+
+  // When the changes velocity, "flip" the image.
+  if(currentFrame != 1 && getVelocityX() >= 0)
+    currentFrame = 1;
+  else if(currentFrame != 0 && getVelocityX() < 0)
+    currentFrame = 0;
 
   if ( getX() < 0) {
     setVelocityX( std::abs( getVelocityX() ) );

@@ -38,11 +38,13 @@ Engine::Engine() :
   currentSprite(0),
   makeVideo( false )
 {
+
   // New sprites, single, multi, and twoFace.
   spriteContainer.reserve(
           Gamedata::getInstance().getXmlInt("SpinningStar/MaxSprites") + 
           Gamedata::getInstance().getXmlInt("YellowStar/MaxSprites") +
           Gamedata::getInstance().getXmlInt("TwoWayStar/MaxSprites"));
+  
   for(int i = 0; i < Gamedata::getInstance().getXmlInt("YellowStar/MaxSprites"); i++)
   {
     spriteContainer.emplace_back(new Sprite("YellowStar"));
@@ -113,7 +115,8 @@ void Engine::update(Uint32 ticks) {
 void Engine::switchSprite(){
   ++currentSprite;
   if(currentSprite >= Gamedata::getInstance().getXmlInt("SpinningStar/MaxSprites") + 
-          Gamedata::getInstance().getXmlInt("YellowStar/MaxSprites"))
+          Gamedata::getInstance().getXmlInt("YellowStar/MaxSprites") +
+          Gamedata::getInstance().getXmlInt("TwoWayStar/MaxSprites"))
   {
       currentSprite = 0;
   }

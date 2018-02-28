@@ -12,6 +12,7 @@ public:
   SDL_Window* getWindow() const { return window; }
   SDL_Renderer* getRenderer() const { return renderer; }
 
+  // Swaps out current image to a new one.
   Image* getImage(const std::string& n) { 
     return factory.getImage(n);
   }
