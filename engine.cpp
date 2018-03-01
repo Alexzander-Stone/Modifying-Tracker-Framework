@@ -41,21 +41,21 @@ Engine::Engine() :
 
   // New sprites, single, multi, and twoFace.
   spriteContainer.reserve(
-          Gamedata::getInstance().getXmlInt("SpinningStar/MaxSprites") + 
-          Gamedata::getInstance().getXmlInt("YellowStar/MaxSprites") +
-          Gamedata::getInstance().getXmlInt("TwoWayStar/MaxSprites"));
+          Gamedata::getInstance().getXmlInt("FlappingBird/MaxSprites") + 
+          Gamedata::getInstance().getXmlInt("CuteCloud/MaxSprites") +
+          Gamedata::getInstance().getXmlInt("Plane/MaxSprites"));
   
-  for(int i = 0; i < Gamedata::getInstance().getXmlInt("YellowStar/MaxSprites"); i++)
+  for(int i = 0; i < Gamedata::getInstance().getXmlInt("CuteCloud/MaxSprites"); i++)
   {
-    spriteContainer.emplace_back(new Sprite("YellowStar"));
+    spriteContainer.emplace_back(new Sprite("CuteCloud"));
   }
-  for(int i = 0; i < Gamedata::getInstance().getXmlInt("SpinningStar/MaxSprites"); i++)
+  for(int i = 0; i < Gamedata::getInstance().getXmlInt("FlappingBird/MaxSprites"); i++)
   {
-    spriteContainer.emplace_back(new MultiSprite("SpinningStar"));
+    spriteContainer.emplace_back(new MultiSprite("FlappingBird"));
   }
-  for(int i = 0; i < Gamedata::getInstance().getXmlInt("TwoWayStar/MaxSprites"); i++)
+  for(int i = 0; i < Gamedata::getInstance().getXmlInt("Plane/MaxSprites"); i++)
   {
-    spriteContainer.emplace_back(new TwoWaySprite("TwoWayStar"));
+    spriteContainer.emplace_back(new TwoWaySprite("Plane"));
   }
   
   Viewport::getInstance().setObjectToTrack(spriteContainer[0]); 
@@ -114,9 +114,9 @@ void Engine::update(Uint32 ticks) {
 
 void Engine::switchSprite(){
   ++currentSprite;
-  if(currentSprite >= Gamedata::getInstance().getXmlInt("SpinningStar/MaxSprites") + 
-          Gamedata::getInstance().getXmlInt("YellowStar/MaxSprites") +
-          Gamedata::getInstance().getXmlInt("TwoWayStar/MaxSprites"))
+  if(currentSprite >= Gamedata::getInstance().getXmlInt("FlappingBird/MaxSprites") + 
+          Gamedata::getInstance().getXmlInt("CuteCloud/MaxSprites") +
+          Gamedata::getInstance().getXmlInt("Plane/MaxSprites"))
   {
       currentSprite = 0;
   }

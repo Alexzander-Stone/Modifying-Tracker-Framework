@@ -73,10 +73,10 @@ void TwoWaySprite::update(Uint32 ticks) {
   }
 
   // When the changes velocity, "flip" the image.
-  if(currentFrame != 1 && getVelocityX() >= 0)
-    currentFrame = 1;
-  else if(currentFrame != 0 && getVelocityX() < 0)
+  if(currentFrame != 0 && getVelocityX() >= 0)
     currentFrame = 0;
+  else if(currentFrame != 1 && getVelocityX() < 0)
+    currentFrame = 1;
 
   if ( getX() < 0) {
     setVelocityX( std::abs( getVelocityX() ) );

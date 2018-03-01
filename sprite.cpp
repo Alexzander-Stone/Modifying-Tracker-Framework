@@ -5,12 +5,15 @@
 #include "gamedata.h"
 #include "renderContext.h"
 
-Vector2f Sprite::makeVelocity(int vx, int vy) const {
+Vector2f Sprite::makeVelocity(int vx, int vy, const string& name) const {
   float newvx = Gamedata::getInstance().getRandFloat(vx-50,vx+50);
-  float newvy = Gamedata::getInstance().getRandFloat(vy-50,vy+50);
+  float newvy = 0;
+  if(Gamedata::getInstance().getXmlInt(name+"/speedY") != 0)
+  {
+    newvy = Gamedata::getInstance().getRandFloat(vy-50,vy+50); 
+  }
   newvx *= [](){ if(rand()%2) return -1; else return 1; }();
   newvy *= [](){ if(rand()%2) return -1; else return 1; }();
-
   return Vector2f(newvx, newvy);
 }
 
@@ -28,7 +31,8 @@ Sprite::Sprite(const std::string& name) :
                     Gamedata::getInstance().getXmlInt(name+"/startLoc/y")), 
            makeVelocity(
                     Gamedata::getInstance().getXmlInt(name+"/speedX"), 
-                    Gamedata::getInstance().getXmlInt(name+"/speedY")) 
+                    Gamedata::getInstance().getXmlInt(name+"/speedY"),
+                    name)
            ),
   image( RenderContext::getInstance()->getImage(name) ),
   worldWidth(Gamedata::getInstance().getXmlInt("world/width")),

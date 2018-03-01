@@ -8,7 +8,7 @@
 <frameCapOn>true</frameCapOn>
 <period>17</period>
 
-<maxFrames>300</maxFrames>
+<maxFrames>600</maxFrames>
 <username>alexzas</username>
 
 <view>
@@ -66,38 +66,38 @@
   <alpha>0</alpha>
 </font>
 
-<SpinningStar>
-  <file>assets/spinstar.png</file>
+<FlappingBird>
+  <file>assets/birdFlap.png</file>
   <startLoc x="50" y="140"/>
   <frames>4</frames>
-  <imageWidth>32</imageWidth>
-  <imageHeight>32</imageHeight>
-  <frameInterval>50</frameInterval>
+  <imageWidth>50</imageWidth>
+  <imageHeight>50</imageHeight>
+  <frameInterval>200</frameInterval>
   <speedX>200</speedX>
   <speedY>200</speedY>
   <transparency>false</transparency>
-  <MaxSprites>2</MaxSprites>
-</SpinningStar>
+  <MaxSprites>7</MaxSprites>
+</FlappingBird>
 
-<TwoWayStar>
-  <file>assets/twofacestar.png</file>
+<Plane>
+  <file>assets/PlaneTwo.png</file>
   <startLoc x="50" y="140"/>
   <frames>2</frames>
-  <imageWidth>32</imageWidth>
-  <imageHeight>32</imageHeight>
+  <imageWidth>100</imageWidth>
+  <imageHeight>77</imageHeight>
   <speedX>1000</speedX>
   <speedY>1000</speedY>
   <transparency>false</transparency>
   <MaxSprites>2</MaxSprites>
-</TwoWayStar>
+</Plane>
 
-<YellowStar>
-  <file>assets/yellowstar32.png</file>
+<CuteCloud>
+  <file>assets/cuteCloud.png</file>
   <startLoc x="227" y="240"/>
   <speedX>300</speedX>
-  <speedY>300</speedY>
+  <speedY>0</speedY>
   <transparency>false</transparency>
-  <MaxSprites>3</MaxSprites>
-</YellowStar>
+  <MaxSprites>1</MaxSprites>
+</CuteCloud>
 
 </GameData>
