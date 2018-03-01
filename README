@@ -1,3 +1,37 @@
-Alexzander Stone
+Name: Alexzander Stone
+
+Course: CpSc 4160: Data-Driven 2D Video Game Development
+
+Clemson Email Address: alexzas@clemson.edu
+
+Project no: 3
+
+Project due date: Mar. 2, 2018
+
+Project description:
+We were given a framework created by Dr. Malloy to create a scene of moving
+sprites and animations. Before changing any of the images, we had to go 
+through the framework and make changes to the code to improve efficiency andto
+teach various programming concepts (Singleton patterns, Data-Driven
+programming, Factories, etc). By the end, we created a full scene with
+different images and received a framework that we can reuse as our own.
+
+The easiest part of this project: was understanding the game design and programming
+related concepts. I've used game engines in the past (Unity, Gamemaker) and
+frameworks (LibGDX), so many of the concepts discussed in class related to my
+past work. This helped to illustrate a visual element of how each concept could
+be implemented (like singletons).
+
+The problems I had during this project were: mainly due to my poor drawing
+skills. I was lucky to have a great piece of art found from online 
+(referenced below) for the background from past game design work in Unity. For
+the sprites that were floating around the screen, I decided to create them
+myself. Although they werent very extravagant, it was still time consuming yet
+worth it in the end.
+
+
+
+
+
 
 Add reference to image.
